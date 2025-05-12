@@ -1,0 +1,25 @@
+﻿<Application x:Class="SafetyPLCMonitor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SafetyPLCMonitor"
+             xmlns:converters="clr-namespace:SafetyPLCMonitor.Utilities.Converters"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:models="clr-namespace:SafetyPLCMonitor.Models"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!-- 값 변환기 -->
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+        
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter" TrueValue="Green" FalseValue="Gray"/>
+        <converters:IOTypeVisibilityConverter x:Key="DiscreteIOVisibilityConverter" Mode="Discrete"/>
+        <converters:IOTypeVisibilityConverter x:Key="RegisterIOVisibilityConverter" Mode="Register"/>
+
+        <!-- IOType 열거형 값 목록 -->
+        <ObjectDataProvider x:Key="IOTypeEnumValues" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:IOType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Application.Resources>
+</Application>
